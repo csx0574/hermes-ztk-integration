@@ -1,0 +1,20 @@
+--- tools/environments/base.py
++++ tools/environments/base.py
+@@ -845,6 +845,18 @@
+         if rewrite_compound_background:
+             from tools.terminal_tool import _rewrite_compound_background
+             exec_command = _rewrite_compound_background(exec_command)
++
++        # === ztk integration (2026-06-26, security audit-driven) ===
++        # 简单命令 → wrap 成 `ztk-safe run <argv>` 让 ztk 压缩输出
++        # 复合命令/交互式 → 原样执行
++        # wrap 后的字符串仍是合法 shell 字符串，下游 _wrap_command 会塞进 eval
++        # 关闭开关：HERMES_ZTK_DISABLED=1
++        try:
++            from tools.ztk_integration import maybe_wrap_command
++            exec_command = maybe_wrap_command(exec_command)
++        except Exception:
++            pass  # 集成模块失败时降级到原行为
++
+         effective_timeout = timeout or self.timeout
+         effective_cwd = cwd or self.cwd

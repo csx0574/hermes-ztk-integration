@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# Editors / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+
+# Test artifacts
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Logs
+*.log
+logs/
+
+# Local config / secrets (NEVER commit these)
+.env
+.env.local
+*.pem
+*.key
+id_rsa*
+
+# Build artifacts
+build/
+dist/
+*.tar.gz
+*.zip
+
+# Node (for any future JS tools)
+node_modules/
+package-lock.json
+
