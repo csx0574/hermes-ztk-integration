@@ -2,6 +2,9 @@
 
 Transparent integration of [ztk](https://github.com/codejunkie99/ztk) (a Zig-based shell output compressor) into Hermes Agent's `terminal_tool`. Every non-interactive, non-compound command automatically passes through `ztk-safe run`, saving 60-99% of context tokens.
 
+> **Languages**: [English](README.md) (default) · [中文版](README.zh.md)
+> **Docs**: [Original Chinese article](docs/article-zh.md) · [Security audit](docs/security-audit-zh.md)
+
 ## Why
 
 Hermes Agent's local backend wraps every shell command inside a session snapshot script (`eval '<cmd>'`). Without integration, `git status`, `cargo test`, `ls -la /tmp` etc. dump their full output into the model's context window. ztk compresses these by 67-94% on average — at <1ms latency and zero model calls.
